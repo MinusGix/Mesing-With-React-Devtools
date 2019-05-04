@@ -1,5 +1,9 @@
+const CONFIG = {
+	log$r: false,
+}
+
 class Clock extends React.Component {
-	constructor (props) {
+	constructor(props) {
 		super(props);
 
 		this.state = {
@@ -7,20 +11,24 @@ class Clock extends React.Component {
 		};
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.timerID = setInterval(() => this.tick(), 1000);
 	}
-	componentWillUnmount () {
+	componentWillUnmount() {
 		clearInterval(this.timerID);
 	}
 
-	tick () {
+	tick() {
+		if (CONFIG.log$r && typeof ($r) !== 'undefined') {
+			console.log('[$r]:', $r);
+		}
+
 		this.setState({
 			date: new Date()
 		});
 	}
 
-	render () {
+	render() {
 		return React.createElement("div", {},
 			React.createElement("h1", {}, "Hello World!"),
 			React.createElement("h2", {}, this.state.date.toLocaleTimeString())

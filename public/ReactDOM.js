@@ -9939,21 +9939,28 @@ function catchErrors(fn) {
   };
 }
 
+// MNOTE: initialization of devtools
+
 var isDevToolsPresent = typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined';
+console.log("[INFO] React-Devtools is present:", isDevToolsPresent);
 
 function injectInternals(internals) {
+	console.log("[INFO] INJECTING INTERNALS", internals);
   if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
+    console.log("\tDid not detect react-devtools.");
     // No DevTools
     return false;
   }
   var hook = __REACT_DEVTOOLS_GLOBAL_HOOK__;
   if (hook.isDisabled) {
+    console.log("\tReact-Devtools is present, but is disabled.");
     // This isn't a real property on the hook, but it can be set to opt out
     // of DevTools integration and associated warnings and logs.
     // https://github.com/facebook/react/issues/3877
     return true;
   }
   if (!hook.supportsFiber) {
+    console.log('\tReact-Devtools is too old. Does not support fiber.');
     {
       warningWithoutStack$1(false, 'The installed version of React DevTools is too old and will not work ' + 'with the current version of React. Please update React DevTools. ' + 'https://fb.me/react-devtools');
     }
@@ -9962,11 +9969,16 @@ function injectInternals(internals) {
   }
   try {
     var rendererID = hook.inject(internals);
+    console.log('\tInjected. rendererID:', rendererID);
+    console.log('\tSetting onCommitFiberRoot and onCommitFiberUnmount to __REACT_DEVTOOLS_GLOBAL_HOOK__ functions');
     // We have successfully injected, so now it is safe to set up hooks.
+    // MNOTE: seems to be called whenever it updates.
     onCommitFiberRoot = catchErrors(function (root) {
+      console.log('[INFO] onCommitFiberRoot');
       return hook.onCommitFiberRoot(rendererID, root);
     });
     onCommitFiberUnmount = catchErrors(function (fiber) {
+      console.log('[INFO] onCommitFiberUnmount');
       return hook.onCommitFiberUnmount(rendererID, fiber);
     });
   } catch (err) {
