@@ -16,5 +16,13 @@ Current findings:
 	- If you select an HTML Element, (such as `<h1>`) then it will hold the HTMLElement in `$r`.
 	- This is obviously meant to mirror Chromiums (I have no clue if it's on Firefox as well) Elements panel, when you select an element it will set a variable called `$0` so you can more easily manipulate it. Chromium does this better, as it's not *actually* a variable, and so the page cannot access it.
 
+Files:
+- `public/index.js` the simple Clock React testing app. Does not use JSX for simplicity.
+- `public/React.js` React.js development version v16.8.6
+- `public/ReactDOM.js` ReactDOM.js development version v16.8.6
+- `public/scripts/`
+	- `detectDR.js` Detects `$r` (see it's section in 'Current Findings'), and tries to detect the usage of React Devtools that way. Does a simple check for if the variable has been declared several times/second.
+	- `detectRD` Detects if `__REACT_DEVTOOLS_GLOBAL_HOOK__` is declared. Does this whenever you call the function.
+
 TODO:
 - Possibly look at https://github.com/facebook/react-devtools/tree/master/packages/react-devtools (a React Devtools which you include in your page). Possibly don't look at this too much, as ReactDevtools is more used (I'm assuming) and if you're putting it in a page then there's no real real reason to try to mess with it as you likely own the page.
