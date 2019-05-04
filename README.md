@@ -13,7 +13,7 @@ Current findings:
 	- If you open the React devtab, then switch back to (for example) the Console devtab, then refresh the page, then the React devtab will still initialize itself, and thus it will be set to the topmost element.
 		- This means you could detect if it's set to see if they've used the React devtab on this page, even across reloads as long as they keep the devtools open. This does not happen if you close the devtools and refresh.
 	- If you select a React Element (such as `<Clock />`) then it will hold the ReactElement in `$r`.
-	- If you select an HTML Element, it will be the HTML element.
+	- If you select an HTML Element, (such as `<h1>`) then it will hold the HTMLElement in `$r`.
 	- This is obviously meant to mirror Chromiums (I have no clue if it's on Firefox as well) Elements panel, when you select an element it will set a variable called `$0` so you can more easily manipulate it. Chromium does this better, as it's not *actually* a variable, and so the page cannot access it.
 
 TODO:
