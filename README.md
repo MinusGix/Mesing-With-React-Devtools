@@ -26,3 +26,4 @@ Files:
 
 TODO:
 - Possibly look at https://github.com/facebook/react-devtools/tree/master/packages/react-devtools (a React Devtools which you include in your page). Possibly don't look at this too much, as ReactDevtools is more used (I'm assuming) and if you're putting it in a page then there's no real real reason to try to mess with it as you likely own the page.
+- Possibly look at React Native, the way their connecting to it is interesting.
