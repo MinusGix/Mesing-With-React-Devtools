@@ -28,8 +28,10 @@ Files:
 	- `detectDR.js` Detects `$r` (see it's section in 'Current Findings'), and tries to detect the usage of React Devtools that way. Does a simple check for if the variable has been declared several times/second.
 	- `detectRD` Detects if `__REACT_DEVTOOLS_GLOBAL_HOOK__` is declared. Does this whenever you call the function.
 
-Of minor note: These are things which are just of note, but don't really let you do anything
-	- 
+Of minor note: These are things which are just of note, but don't really let you do anything or I plan to look at them futher.
+	- `__REACT_DEVTOOLS_GLOBAL_HOOK__.$node` unsure of what this is for. (See: devtools `panel.js` file)
+	- `__REACT_DEVTOOLS_GLOBAL_HOOK__.reactDevtoolsAgent.emit('shutdown')` seems to let you make react-devtools no longer update until you reopen them
+	- When one has the 'Highlight Updates' option on, ReactDevtools adds a canvas to the topmost level (just under the main `html` tag) with the id `#TraceUpdatesWebNodePresenter` one can use this to divine that they have the setting enabled.
 
 TODO:
 - Possibly look at https://github.com/facebook/react-devtools/tree/master/packages/react-devtools (a React Devtools which you include in your page). Possibly don't look at this too much, as ReactDevtools is more used (I'm assuming) and if you're putting it in a page then there's no real real reason to try to mess with it as you likely own the page.
